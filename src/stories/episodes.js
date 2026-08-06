@@ -2,7 +2,7 @@ export const episodes = [
   {
     number: 1,
     title: "An Ordinary Thursday",
-    date: "January 3, 2025",
+    date: "August 14, 2026",
     content: `Charlie's barking cut through the pre-dawn quiet at exactly 5:45 AM. Noelle Thompson rolled over and groaned into her pillow. Her goldendoodle had spotted the squirrel again—the one that lived in the oak tree across from their Hayes Valley apartment.
 
 "Charlie, seriously?" Noelle whispered, already knowing it was futile. She'd planned to sleep until 6:30, but now that she was up, she might as well make use of the early start.
