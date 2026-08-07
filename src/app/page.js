@@ -8,6 +8,7 @@ export default function Home() {
   const [expandedEpisode, setExpandedEpisode] = useState(1);
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [subscribeOpen, setSubscribeOpen] = useState(false);
   const latestEpisode = episodes[episodes.length - 1];
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
@@ -88,10 +89,69 @@ export default function Home() {
           <p className="text-gray-600">What awaits Noelle at TechFlow? Find out in tomorrow's episode...</p>
           
           <div className="mt-6 flex items-center justify-between">
-            <button className="flex items-center text-teal-600 hover:text-teal-700">
-              <Bell className="w-5 h-5 mr-2" />
-              Get Daily Updates
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => setSubscribeOpen(!subscribeOpen)}
+                className="flex items-center text-teal-600 hover:text-teal-700"
+              >
+                <Bell className="w-5 h-5 mr-2" />
+                Get Daily Updates
+              </button>
+
+              {subscribeOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setSubscribeOpen(false)}
+                  />
+                  <div className="absolute left-0 bottom-full mb-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 p-4 z-20">
+                    <p className="text-sm text-gray-600 mb-3">
+                      Get each new episode delivered to your inbox.
+                    </p>
+                    <form
+                      action="https://buttondown.com/api/emails/embed-subscribe/lucyethomp"
+                      method="post"
+                      target="popupwindow"
+                      onSubmit={() =>
+                        window.open(
+                          'https://buttondown.com/api/emails/embed-subscribe/lucyethomp',
+                          'popupwindow',
+                          'scrollbars=yes,width=800,height=600'
+                        )
+                      }
+                      className="embeddable-buttondown-form flex flex-col gap-2"
+                    >
+                      <label htmlFor="bd-email" className="sr-only">
+                        Enter your email
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        id="bd-email"
+                        required
+                        placeholder="you@example.com"
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                      <input
+                        type="submit"
+                        value="Subscribe"
+                        className="w-full py-2 text-sm font-medium text-white bg-teal-600 rounded-md hover:bg-teal-700 transition cursor-pointer"
+                      />
+                      <p className="text-xs text-gray-400 text-center mt-1">
+                        <a
+                          href="https://buttondown.com/refer/lucyethomp"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="hover:underline"
+                        >
+                          Powered by Buttondown.
+                        </a>
+                      </p>
+                    </form>
+                  </div>
+                </>
+              )}
+            </div>
             <div className="relative">
               <button
                 onClick={() => setShareMenuOpen(!shareMenuOpen)}
