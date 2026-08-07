@@ -1,15 +1,35 @@
 'use client';
 
-import { Bell, Calendar, Share2, ChevronDown } from 'lucide-react';
+import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 import { episodes } from '../stories/episodes';
 
 export default function Home() {
   const [expandedEpisode, setExpandedEpisode] = useState(1);
+  const [shareMenuOpen, setShareMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
   const latestEpisode = episodes[episodes.length - 1];
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   const toggleEpisode = (episodeNumber) => {
     setExpandedEpisode(expandedEpisode === episodeNumber ? null : episodeNumber);
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy link', err);
+    }
+    setShareMenuOpen(false);
+  };
+
+  const handleTextShare = () => {
+    const message = `Check out The Story of Noelle & Wallace: ${shareUrl}`;
+    window.location.href = `sms:?&body=${encodeURIComponent(message)}`;
+    setShareMenuOpen(false);
   };
 
   return (
@@ -72,10 +92,40 @@ export default function Home() {
               <Bell className="w-5 h-5 mr-2" />
               Get Daily Updates
             </button>
-            <button className="flex items-center text-gray-600 hover:text-gray-700">
-              <Share2 className="w-5 h-5 mr-2" />
-              Share Story
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => setShareMenuOpen(!shareMenuOpen)}
+                className="flex items-center text-gray-600 hover:text-gray-700"
+              >
+                <Share2 className="w-5 h-5 mr-2" />
+                Share Story
+              </button>
+
+              {shareMenuOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setShareMenuOpen(false)}
+                  />
+                  <div className="absolute right-0 bottom-full mb-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-20">
+                    <button
+                      onClick={handleCopyLink}
+                      className="w-full flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition"
+                    >
+                      <Link2 className="w-4 h-4 mr-3" />
+                      {copied ? 'Link copied!' : 'Copy link'}
+                    </button>
+                    <button
+                      onClick={handleTextShare}
+                      className="w-full flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition border-t border-gray-100"
+                    >
+                      <MessageCircle className="w-4 h-4 mr-3" />
+                      Text to someone
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
 
