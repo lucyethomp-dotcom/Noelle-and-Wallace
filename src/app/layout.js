@@ -14,10 +14,10 @@ export const metadata = {
     siteName: title,
     images: [
       {
-        url: '/noelle.png',
-        width: 1024,
-        height: 1024,
-        alt: 'Noelle Thompson',
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'MyWebSoap.com',
       },
     ],
     type: 'website',
@@ -26,7 +26,7 @@ export const metadata = {
     card: 'summary_large_image',
     title,
     description,
-    images: ['/noelle.png'],
+    images: ['/og-image.png'],
   },
 }
 
