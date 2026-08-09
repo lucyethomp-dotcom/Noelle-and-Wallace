@@ -22,14 +22,10 @@ export default function Home() {
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   useEffect(() => {
-    const stored = window.localStorage.getItem('episodeReactions');
-    if (stored) {
-      try {
-        setReactions(JSON.parse(stored));
-      } catch (err) {
-        console.error('Failed to parse stored reactions', err);
-      }
-    }
+    fetch('/api/reactions')
+      .then((res) => res.json())
+      .then((data) => setReactions(data))
+      .catch((err) => console.error('Failed to load reactions', err));
 
     const storedReacted = window.localStorage.getItem('episodeReactedKeys');
     if (storedReacted) {
@@ -51,15 +47,13 @@ export default function Home() {
 
     setReactions((prev) => {
       const current = prev[episodeNumber] || {};
-      const updated = {
+      return {
         ...prev,
         [episodeNumber]: {
           ...current,
           [type]: (current[type] || 0) + 1,
         },
       };
-      window.localStorage.setItem('episodeReactions', JSON.stringify(updated));
-      return updated;
     });
 
     setReactedKeys((prev) => {
@@ -67,6 +61,12 @@ export default function Home() {
       window.localStorage.setItem('episodeReactedKeys', JSON.stringify(updated));
       return updated;
     });
+
+    fetch('/api/reactions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ episodeNumber, type }),
+    }).catch((err) => console.error('Failed to save reaction', err));
   };
 
   const handleCopyLink = async () => {
