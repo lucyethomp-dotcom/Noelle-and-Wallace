@@ -1,19 +1,53 @@
 'use client';
 
-import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle } from 'lucide-react';
-import { useState } from 'react';
+import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle, ThumbsUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { episodes } from '../stories/episodes';
+
+const REACTION_TYPES = [
+  { key: 'like', label: 'Like', icon: 'thumbsup' },
+  { key: 'laugh', label: 'Laughing', icon: '😂' },
+  { key: 'surprise', label: 'Surprised', icon: '😮' },
+  { key: 'nervous', label: 'Nervous', icon: '😰' },
+];
 
 export default function Home() {
   const [expandedEpisode, setExpandedEpisode] = useState(1);
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [subscribeOpen, setSubscribeOpen] = useState(false);
+  const [reactions, setReactions] = useState({});
   const latestEpisode = episodes[episodes.length - 1];
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
+  useEffect(() => {
+    const stored = window.localStorage.getItem('episodeReactions');
+    if (stored) {
+      try {
+        setReactions(JSON.parse(stored));
+      } catch (err) {
+        console.error('Failed to parse stored reactions', err);
+      }
+    }
+  }, []);
+
   const toggleEpisode = (episodeNumber) => {
     setExpandedEpisode(expandedEpisode === episodeNumber ? null : episodeNumber);
+  };
+
+  const handleReaction = (episodeNumber, type) => {
+    setReactions((prev) => {
+      const current = prev[episodeNumber] || {};
+      const updated = {
+        ...prev,
+        [episodeNumber]: {
+          ...current,
+          [type]: (current[type] || 0) + 1,
+        },
+      };
+      window.localStorage.setItem('episodeReactions', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const handleCopyLink = async () => {
@@ -77,6 +111,26 @@ export default function Home() {
                       {paragraph}
                     </p>
                   ))}
+
+                  <div className="flex flex-wrap items-center gap-3 pt-4 mt-2 border-t border-gray-200">
+                    {REACTION_TYPES.map(({ key, label, icon }) => (
+                      <button
+                        key={key}
+                        onClick={() => handleReaction(episode.number, key)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-gray-200 hover:border-teal-300 hover:bg-teal-50 transition text-sm text-gray-700"
+                        aria-label={label}
+                      >
+                        {icon === 'thumbsup' ? (
+                          <ThumbsUp className="w-4 h-4 text-teal-600" />
+                        ) : (
+                          <span className="text-base leading-none">{icon}</span>
+                        )}
+                        <span className="text-gray-500">
+                          {reactions[episode.number]?.[key] || 0}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
