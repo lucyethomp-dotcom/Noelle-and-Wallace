@@ -17,6 +17,7 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [subscribeOpen, setSubscribeOpen] = useState(false);
   const [reactions, setReactions] = useState({});
+  const [reactedKeys, setReactedKeys] = useState([]);
   const latestEpisode = episodes[episodes.length - 1];
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
@@ -29,6 +30,15 @@ export default function Home() {
         console.error('Failed to parse stored reactions', err);
       }
     }
+
+    const storedReacted = window.localStorage.getItem('episodeReactedKeys');
+    if (storedReacted) {
+      try {
+        setReactedKeys(JSON.parse(storedReacted));
+      } catch (err) {
+        console.error('Failed to parse stored reacted keys', err);
+      }
+    }
   }, []);
 
   const toggleEpisode = (episodeNumber) => {
@@ -36,6 +46,9 @@ export default function Home() {
   };
 
   const handleReaction = (episodeNumber, type) => {
+    const reactionKey = `${episodeNumber}-${type}`;
+    if (reactedKeys.includes(reactionKey)) return;
+
     setReactions((prev) => {
       const current = prev[episodeNumber] || {};
       const updated = {
@@ -46,6 +59,12 @@ export default function Home() {
         },
       };
       window.localStorage.setItem('episodeReactions', JSON.stringify(updated));
+      return updated;
+    });
+
+    setReactedKeys((prev) => {
+      const updated = [...prev, reactionKey];
+      window.localStorage.setItem('episodeReactedKeys', JSON.stringify(updated));
       return updated;
     });
   };
@@ -113,23 +132,32 @@ export default function Home() {
                   ))}
 
                   <div className="flex flex-wrap items-center gap-3 pt-4 mt-2 border-t border-gray-200">
-                    {REACTION_TYPES.map(({ key, label, icon }) => (
-                      <button
-                        key={key}
-                        onClick={() => handleReaction(episode.number, key)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-gray-200 hover:border-teal-300 hover:bg-teal-50 transition text-sm text-gray-700"
-                        aria-label={label}
-                      >
-                        {icon === 'thumbsup' ? (
-                          <ThumbsUp className="w-4 h-4 text-teal-600" />
-                        ) : (
-                          <span className="text-base leading-none">{icon}</span>
-                        )}
-                        <span className="text-gray-500">
-                          {reactions[episode.number]?.[key] || 0}
-                        </span>
-                      </button>
-                    ))}
+                    {REACTION_TYPES.map(({ key, label, icon }) => {
+                      const hasReacted = reactedKeys.includes(`${episode.number}-${key}`);
+                      return (
+                        <button
+                          key={key}
+                          onClick={() => handleReaction(episode.number, key)}
+                          disabled={hasReacted}
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition text-sm ${
+                            hasReacted
+                              ? 'bg-teal-50 border-teal-300 text-teal-700 cursor-not-allowed'
+                              : 'bg-white border-gray-200 text-gray-700 hover:border-teal-300 hover:bg-teal-50'
+                          }`}
+                          aria-label={label}
+                          aria-pressed={hasReacted}
+                        >
+                          {icon === 'thumbsup' ? (
+                            <ThumbsUp className={`w-4 h-4 ${hasReacted ? 'text-teal-700' : 'text-teal-600'}`} />
+                          ) : (
+                            <span className="text-base leading-none">{icon}</span>
+                          )}
+                          <span className={hasReacted ? 'text-teal-700' : 'text-gray-500'}>
+                            {reactions[episode.number]?.[key] || 0}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               )}
