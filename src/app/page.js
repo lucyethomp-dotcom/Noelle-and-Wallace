@@ -41,7 +41,7 @@ export default function Home() {
     setExpandedEpisode(expandedEpisode === episodeNumber ? null : episodeNumber);
   };
 
-  const handleReaction = (episodeNumber, type) => {
+  const handleReaction = async (episodeNumber, type) => {
     const reactionKey = `${episodeNumber}-${type}`;
     if (reactedKeys.includes(reactionKey)) return;
 
@@ -56,17 +56,32 @@ export default function Home() {
       };
     });
 
-    setReactedKeys((prev) => {
-      const updated = [...prev, reactionKey];
-      window.localStorage.setItem('episodeReactedKeys', JSON.stringify(updated));
-      return updated;
-    });
+    try {
+      const res = await fetch('/api/reactions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ episodeNumber, type }),
+      });
+      if (!res.ok) throw new Error('Failed to save reaction');
 
-    fetch('/api/reactions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ episodeNumber, type }),
-    }).catch((err) => console.error('Failed to save reaction', err));
+      setReactedKeys((prev) => {
+        const updated = [...prev, reactionKey];
+        window.localStorage.setItem('episodeReactedKeys', JSON.stringify(updated));
+        return updated;
+      });
+    } catch (err) {
+      console.error('Failed to save reaction', err);
+      setReactions((prev) => {
+        const current = prev[episodeNumber] || {};
+        return {
+          ...prev,
+          [episodeNumber]: {
+            ...current,
+            [type]: Math.max((current[type] || 0) - 1, 0),
+          },
+        };
+      });
+    }
   };
 
   const handleCopyLink = async () => {
