@@ -70,51 +70,5 @@ She was thinking about Wallace, too (that cute guy she met yesterday) - which su
 She rounded the corner by Lafayette Park, half-hoping and half-dreading it, and there he was - same path, same time, standing very still with his phone in his hand. His jaw was tight, his shoulders drawn up near his ears, and the easy warmth from yesterday was nowhere on his face.
 
 He looked up and saw her. Whatever was on that screen, it had drained the color from his face.`
-  },
-  {
-    number: 3,
-    title: "No Exceptions",
-    date: "August 16, 2026",
-    content: `Wallace didn't notice Noelle until Charlie's nose bumped into his hand, insistent, tail wagging like he'd personally decided the morning needed fixing.
-
-"Wallace?" She slowed, studying him. "Are you okay?"
-
-"Yes..." He tried for a smile and only got halfway there. "My dad's computer died. This morning. Of all mornings."
-
-"Okay." She said it slowly, watching his face instead of the joke he'd offered her. "That's not a face people make over a computer."
-
-It was. His dad lived alone in a cabin outside Tahoe, three hours and one very stubborn mountain away, with a heart weak enough that his cardiologist had banned him from driving down for appointments at all. Every Thursday at nine, they did the visit by video instead — eight months, no exceptions. This morning the laptop had simply refused to turn on, and his dad — who considered "have you tried restarting it" a personal insult — had called at six a.m. to announce, calmly, that he'd just skip this one.
-
-"He'll skip a cardiology appointment," Wallace said, "before he'll let anyone touch his computer for him. He once fixed a printer with a butter knife rather than call IT."
-
-"That's either very impressive or a fire hazard."
-
-"Both. Frequently both."
-
-Noelle tilted her head, and he watched her do the thing he was starting to recognize — the fast, assessing thing, like she was already three steps into solving a problem he hadn't asked her to solve. "I run tech support for four hundred engineers. I promise you this is smaller than it feels."
-
-"You don't have to—"
-
-"I'm offering." A beat. "Also, you've been standing so still that Charlie's trying to work out if you're an unusually tall squirrel."
-
-That got the laugh out of him, finally, and something about the sound surprised them both. She was still watching him with that steady, unhurried attention, and he had the distinctly inconvenient thought that he didn't actually want this conversation to end.
-
-"Coffee?" she said. "There's a place two blocks from here that opens at seven. You talk, I'll pull up remote desktop options, and we'll figure out if this is a five-minute fix or a drive-up-the-mountain situation."
-
-"You're serious."
-
-"I'm always serious. It's a professional flaw." She was already turning, Charlie falling into step beside her like the decision had been made for all three of them.
-
-He was still smiling when his phone rang — an actual call, not a text, which his dad never did — and the name on the screen tightened something in his chest.
-
-FRANK NEUMANN — TAHOE.
-
-His dad's neighbor. Wallace picked up before the second ring. "Frank, hey, is everything—"
-
-"He's not picking up his phone." Frank sounded like he'd been half-jogging. "Soon as I told him I couldn't fix the computer, he said fine, he'd just drive down himself. That was twenty minutes ago. In this fog."
-
-Wallace's stomach dropped straight through the sidewalk. His dad. Alone. On a mountain road. In the one kind of weather his cardiologist had banned him from driving in at all.
-
-"He what—"`
   }
 ];
