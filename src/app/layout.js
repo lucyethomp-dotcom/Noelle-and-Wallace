@@ -2,11 +2,37 @@ import './globals.css'
 
 const title = 'The Story of Noelle & Wallace'
 const description = 'A San Francisco Romance, Delivered Daily'
+const longDescription =
+  'Follow the evolving relationship between Noelle Thompson, a brilliant tech executive, and Wallace Brown, a quantum physicist, as their paths cross in foggy San Francisco. A free daily serial romance, new episodes published every day at 7 AM PST.'
 
 export const metadata = {
   metadataBase: new URL('https://mywebsoap.com'),
   title,
-  description,
+  description: longDescription,
+  keywords: [
+    'serial fiction',
+    'daily romance story',
+    'web novel',
+    'San Francisco romance',
+    'free online fiction',
+    'Noelle and Wallace',
+    'MyWebSoap',
+  ],
+  authors: [{ name: 'Lucy Thompson' }],
+  category: 'Fiction',
+  alternates: {
+    canonical: 'https://mywebsoap.com',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     title,
     description,

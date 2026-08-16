@@ -101,8 +101,30 @@ export default function Home() {
     setShareMenuOpen(false);
   };
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'The Story of Noelle & Wallace',
+    description: 'A San Francisco Romance, Delivered Daily',
+    url: 'https://mywebsoap.com',
+    inLanguage: 'en-US',
+    blogPost: episodes.map((episode) => ({
+      '@type': 'BlogPosting',
+      headline: `${episode.number}: ${episode.title}`,
+      datePublished: new Date(episode.date).toISOString().slice(0, 10),
+      url: `https://mywebsoap.com/#episode-${episode.number}`,
+      articleSection: 'Fiction',
+      author: { '@type': 'Person', name: 'Lucy Thompson' },
+      description: episode.content.split('\n\n')[0].slice(0, 300),
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-rose-100 to-teal-100 p-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -115,11 +137,16 @@ export default function Home() {
       <div className="max-w-4xl mx-auto p-6">
         <div className="space-y-4">
           {episodes.map((episode) => (
-            <div key={episode.number} className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div
+              key={episode.number}
+              id={`episode-${episode.number}`}
+              className="bg-white rounded-lg shadow-lg overflow-hidden"
+            >
               {/* Episode Header - Clickable */}
               <button
                 onClick={() => toggleEpisode(episode.number)}
                 className="w-full p-6 flex items-center justify-between hover:bg-gray-50 transition"
+                aria-expanded={expandedEpisode === episode.number}
               >
                 <div className="text-left">
                   <h2 className="text-2xl font-semibold text-gray-800">
@@ -130,52 +157,55 @@ export default function Home() {
                     {episode.date}
                   </span>
                 </div>
-                <ChevronDown 
+                <ChevronDown
+                  aria-hidden="true"
                   className={`w-6 h-6 text-gray-600 transition-transform ${
                     expandedEpisode === episode.number ? 'rotate-180' : ''
                   }`}
                 />
               </button>
 
-              {/* Story Content - Dropdown */}
-              {expandedEpisode === episode.number && (
-                <div className="p-6 border-t border-gray-200 bg-gray-50">
-                  {episode.content.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4 text-gray-700 leading-relaxed">
-                      {paragraph}
-                    </p>
-                  ))}
+              {/* Story Content - Dropdown (always in the DOM so search engines and AI crawlers can read every episode, only hidden visually when collapsed) */}
+              <div
+                className={`p-6 border-t border-gray-200 bg-gray-50 ${
+                  expandedEpisode === episode.number ? '' : 'hidden'
+                }`}
+              >
+                {episode.content.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
 
-                  <div className="flex flex-wrap items-center gap-3 pt-4 mt-2 border-t border-gray-200">
-                    {REACTION_TYPES.map(({ key, label, icon }) => {
-                      const hasReacted = reactedKeys.includes(`${episode.number}-${key}`);
-                      return (
-                        <button
-                          key={key}
-                          onClick={() => handleReaction(episode.number, key)}
-                          disabled={hasReacted}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition text-sm ${
-                            hasReacted
-                              ? 'bg-teal-50 border-teal-300 text-teal-700 cursor-not-allowed'
-                              : 'bg-white border-gray-200 text-gray-700 hover:border-teal-300 hover:bg-teal-50'
-                          }`}
-                          aria-label={label}
-                          aria-pressed={hasReacted}
-                        >
-                          {icon === 'thumbsup' ? (
-                            <ThumbsUp className={`w-4 h-4 ${hasReacted ? 'text-teal-700' : 'text-teal-600'}`} />
-                          ) : (
-                            <span className="text-base leading-none">{icon}</span>
-                          )}
-                          <span className={hasReacted ? 'text-teal-700' : 'text-gray-500'}>
-                            {reactions[episode.number]?.[key] || 0}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                <div className="flex flex-wrap items-center gap-3 pt-4 mt-2 border-t border-gray-200">
+                  {REACTION_TYPES.map(({ key, label, icon }) => {
+                    const hasReacted = reactedKeys.includes(`${episode.number}-${key}`);
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => handleReaction(episode.number, key)}
+                        disabled={hasReacted}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition text-sm ${
+                          hasReacted
+                            ? 'bg-teal-50 border-teal-300 text-teal-700 cursor-not-allowed'
+                            : 'bg-white border-gray-200 text-gray-700 hover:border-teal-300 hover:bg-teal-50'
+                        }`}
+                        aria-label={label}
+                        aria-pressed={hasReacted}
+                      >
+                        {icon === 'thumbsup' ? (
+                          <ThumbsUp className={`w-4 h-4 ${hasReacted ? 'text-teal-700' : 'text-teal-600'}`} />
+                        ) : (
+                          <span className="text-base leading-none">{icon}</span>
+                        )}
+                        <span className={hasReacted ? 'text-teal-700' : 'text-gray-500'}>
+                          {reactions[episode.number]?.[key] || 0}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
@@ -183,7 +213,7 @@ export default function Home() {
         {/* Next Episode Teaser */}
         <div className="mt-8 bg-white p-6 rounded-lg shadow-lg">
           <h3 className="text-lg font-semibold text-gray-800 mb-2">Coming Tomorrow</h3>
-          <p className="text-gray-600">What awaits Noelle at TechFlow? Find out in tomorrow's episode...</p>
+          <p className="text-gray-600">A chance meeting, an easy laugh — but is there more to Wallace than Noelle realizes? Find out in tomorrow's episode...</p>
           
           <div className="mt-6 flex items-center justify-between">
             <div className="relative">
