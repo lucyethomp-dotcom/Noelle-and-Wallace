@@ -1,6 +1,6 @@
 'use client';
 
-import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle, ThumbsUp } from 'lucide-react';
+import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle, ThumbsUp, Eye } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { episodes } from '../stories/episodes';
 
@@ -18,6 +18,7 @@ export default function Home() {
   const [subscribeOpen, setSubscribeOpen] = useState(false);
   const [reactions, setReactions] = useState({});
   const [reactedKeys, setReactedKeys] = useState([]);
+  const [viewCount, setViewCount] = useState(null);
   const latestEpisode = episodes[episodes.length - 1];
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
@@ -35,6 +36,19 @@ export default function Home() {
         console.error('Failed to parse stored reacted keys', err);
       }
     }
+
+    const alreadyCountedThisSession = window.sessionStorage.getItem('viewCounted');
+    const viewRequest = alreadyCountedThisSession
+      ? fetch('/api/views')
+      : fetch('/api/views', { method: 'POST' });
+
+    viewRequest
+      .then((res) => res.json())
+      .then((data) => {
+        setViewCount(data.count);
+        window.sessionStorage.setItem('viewCounted', 'true');
+      })
+      .catch((err) => console.error('Failed to load view count', err));
   }, []);
 
   const toggleEpisode = (episodeNumber) => {
@@ -130,6 +144,12 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">The Story of Noelle & Wallace</h1>
           <p className="text-lg text-gray-600">A San Francisco Romance, Delivered Daily</p>
+          {viewCount !== null && (
+            <p className="mt-3 flex items-center justify-center text-sm text-gray-500">
+              <Eye className="w-4 h-4 mr-1.5" />
+              {viewCount.toLocaleString()} views
+            </p>
+          )}
         </div>
       </div>
 
