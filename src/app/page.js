@@ -144,12 +144,6 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">The Story of Noelle & Wallace</h1>
           <p className="text-lg text-gray-600">A San Francisco Romance, Delivered Daily</p>
-          {viewCount !== null && (
-            <p className="mt-3 flex items-center justify-center text-sm text-gray-500">
-              <Eye className="w-4 h-4 mr-1.5" />
-              {viewCount.toLocaleString()} views
-            </p>
-          )}
         </div>
       </div>
 
@@ -341,10 +335,16 @@ export default function Home() {
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">About the Story</h3>
             <p className="text-gray-600">
-              Follow the evolving relationship between Noelle Thompson, a brilliant tech executive, 
-              and Wallace Brown, a quantum physicist, as their paths cross in foggy San Francisco. 
+              Follow the evolving relationship between Noelle Thompson, a brilliant tech executive,
+              and Wallace Brown, a quantum physicist, as their paths cross in foggy San Francisco.
               New episodes published every day at 7 AM PST.
             </p>
+            {viewCount !== null && (
+              <p className="mt-4 flex items-center text-xs text-gray-400">
+                <Eye className="w-3 h-3 mr-1" />
+                {viewCount.toLocaleString()} views
+              </p>
+            )}
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-lg">
