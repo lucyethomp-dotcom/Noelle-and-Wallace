@@ -116,5 +116,51 @@ His dad's neighbor. Wallace picked up before the second ring. "Frank, hey, is ev
 Wallace's stomach dropped straight through the sidewalk. His dad. Alone. On a mountain road. In the one kind of weather his cardiologist had banned him from driving in at all.
 
 "He what—"`
+  },
+  {
+    number: 4,
+    title: "Not Just a Friend",
+    date: "August 17, 2026",
+    content: `"He what—" Wallace started, but Frank had already hung up, and dialing his dad got him nothing but four rings and voicemail. Third time in ten minutes.
+
+"Give me the phone," Noelle said.
+
+"He won't pick up for a number he doesn't know either."
+
+"He won't pick up for you, because he already knows what you're going to say." She was dialing before he could argue. "But a number he doesn't recognize? He won't be able to help himself."
+
+It worked in one ring. Wallace stood there, jealously impressed, listening to her voice go warm and easy — "Hi, is this Pete? I'm Noelle, a friend of Wallace's — everything's fine, I promise, but I need you to pull over" — like she'd talked down stubborn men on mountain roads her whole life. Three minutes later, Pete Brown was turned around and driving home, grumbling, and Noelle had promised him his computer would be sorted by that afternoon.
+
+"You can't promise that," Wallace said.
+
+"Sure I can! Trust me." She clipped Charlie's leash back on. "Philz?"
+
+The barista knew Charlie on sight and waved them both in. They ordered without discussing it and somehow ordered the same thing — two Julie's Ultimates — and stood at the counter looking at each other like that meant something, while Charlie inspected the floor for crumbs with the focus of a man conducting an audit.
+
+Pete called back before the drinks arrived, and Noelle put him on speaker. His dad talked for four straight minutes — screen won't wake, fan screaming, and lately the trackpad's been bulging up on one side — and Noelle asked three sharp questions, then went quiet in a way that worried him.
+
+"That's not software," she said. "That's a swollen battery — it's why the trackpad's lifting. You can't ship that, and you can't leave it sitting there either. Those things split if they get hot enough."
+
+"So I drive up?"
+
+"You drive up." She was already writing on a napkin, her handwriting fast and legible. "Don't let him touch it, don't let it get hot, get it out of the house. Replacement battery, this exact model — don't let the guy at the store upsell you. Call this number when you get there, she's better at hardware than I am." She paused. "Which also means nine o'clock isn't happening. I'll call his cardiologist and get him moved to early afternoon, once you've got him back online."
+
+"You're not coming."
+
+"Board meeting at nine. Already blew that up once this week." She said it lightly, but something behind it wasn't. "And I've got to drop this one home first," she added, glancing at Charlie, who thumped his tail like he approved. She pressed the napkin into Wallace's hand, her fingers warm against his a second longer than the handoff required. "Go. Text me when you get there. Both of you."
+
+He was on the highway before he let himself think about it properly — a woman he'd known for two days had rerouted her whole morning, talked his impossible father off a mountain road, and sent him off prepared, with a napkin like a treaty in his pocket, for no reason he could name except that she'd decided to. He didn't know what to do with being someone's project. Somewhere past Truckee, fog settling over the ridge exactly the way it did every morning back in the city she was probably already in by now, he realized he was smiling at nothing, and didn't stop.
+
+His dad was waiting on the porch when he pulled in, sheepish and entirely too pleased with himself for a man who'd nearly driven off a mountain two hours ago.
+
+"So," Pete said, before Wallace had even cleared the truck. "Who was that on the phone?"
+
+"A friend."
+
+"A friend." His dad's eyebrows did something complicated. "This friend talks your old man off a ledge, orders your coffee for you, and rearranges half your morning like she's done it a hundred times. That's not what a friend sounds like to me, son."
+
+"Dad—"
+
+"So what's going on with you and this Noelle?"`
   }
 ];
