@@ -208,5 +208,49 @@ It rang once. Twice. She found herself oddly nervous, which was its own small, i
 "Hey." A pause, and something in his voice caught — just slightly, like he hadn't expected it to do that. "Hi. I'm really glad you called."
 
 She hadn't braced for that. Not the softness in it, or the way something in her chest turned over, entirely without her permission, at the sound of a man being simply, uncomplicatedly happy to hear from her.`
+  },
+  {
+    number: 6,
+    title: "The Line Clearing",
+    date: "August 17, 2026",
+    content: `"So what's going on with you and this Noelle?" His dad was still waiting on the porch for an answer, arms crossed, entirely too pleased with himself.
+
+"I just met her two days ago," Wallace said, which was true and also managed to explain absolutely nothing. "But — we both like Julie's Ultimate."
+
+His dad squinted at him like he'd started speaking Mandarin. "Julie's who?"
+
+"It's a coffee drink. At Philz."
+
+"Is Julie the coffee, or is Julie a person you also like?"
+
+"Dad."
+
+"I'm asking a reasonable question."
+
+Wallace decided the conversation had officially exceeded his capacity for further explanation and went inside to make himself useful, which felt safer than examining why two days had produced a woman who apparently knew his coffee order without asking.
+
+He texted her from the kitchen table, laptop already open beside him: *made it. dad behaving (mostly).* Then, because that felt insufficient somehow, he added: *thank you. seriously.*
+
+By one, the new battery was in, the laptop resurrected, his dad parked in front of it grumbling happily at his cardiologist about arrhythmia readings. Wallace set up at the kitchen table with his own laptop, put on the thick green glasses he only wore when he actually meant to get something done, and opened the file he'd been circling for three weeks: a pair of entangled particles that were supposed to stay perfectly in sync, no matter the distance between them, and kept falling out of it half a second too early. He'd spent three weeks blaming the crystal lattice around them — the framework of atoms holding everything in place — for jostling them out of step. Six months from a real answer, maybe. Longer, some days.
+
+He got a page in before he checked his phone. Nothing yet. He told himself that was fine, put it face-down, and made it another twenty minutes before he flipped it back over just to be sure.
+
+When it finally rang at seven, he answered so fast he nearly dropped it.
+
+"Hey." A pause. "Hi. I'm really glad you called."
+
+"How's the patient?" She sounded tired in a satisfied way.
+
+"Fully operational. Currently lecturing his cardiologist about arrhythmia readings, so — recovering nicely." He leaned back in the chair. "You fixed my dad's computer from forty miles away with a napkin. Thank you. I mean that. Thank you."
+
+"You did the actual work. I just gave instructions."
+
+"Very good instructions."
+
+They talked longer than either of them probably meant to — about her meeting, in vague, careful terms; about Pete's opinions on modern technology; about nothing, really, in the way that somehow took forty minutes. When they finally landed on *we should figure out when I'm back in the city* and *text me*, he didn't want to be the one to hang up first, so he wasn't.
+
+Two minutes after the call ended, still smiling at nothing, the problem simply clicked. Not the lattice. The pairs weren't losing sync because of anything around them — they were losing sync because of each other, drifting apart in relation to one another a fraction of a second early. Which meant the fix wasn't insulation. It was timing.
+
+He was writing before he'd fully finished the thought, three weeks of dead ends suddenly wide open. Later, he had no idea how he'd explain to anyone that the breakthrough came the exact second the call ended — like it had been waiting for Noelle to inspire him.`
   }
 ];
