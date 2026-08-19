@@ -162,5 +162,51 @@ His dad was waiting on the porch when he pulled in, sheepish and entirely too pl
 "Dad—"
 
 "So what's going on with you and this Noelle?"`
+  },
+  {
+    number: 5,
+    title: "Everything Material",
+    date: "August 17, 2026",
+    content: `Noelle made it into the building at 8:58, coffee in one hand, blazer half-buttoned. Two minutes to spare. She'd take it.
+
+"Cutting it close," Marcus said, falling into step beside her.
+
+"I fixed a swollen laptop battery and rearranged a goldendoodle's entire morning since sunrise. I'm basically early."
+
+He didn't ask. She loved that about him, occasionally.
+
+The boardroom smelled like burnt coffee and low-grade dread, the same eleven faces from Tuesday arranged around the table like they hadn't moved since. She'd barely sat before her phone buzzed once, insistent, and she glanced down out of habit.
+
+SUBJECT: RE: Security Disclosure — What Really Happened
+FROM: unknown sender
+TIME: 8:59 AM
+
+*The vulnerability wasn't just a risk. Someone accessed client data through it three weeks before you patched it. That's not in the board deck. Ask Marcus why.*
+
+Her stomach dropped straight through the conference table. A breach. An actual breach, not the near-miss she'd stood in front of this exact board and staked her name on. And Marcus — sitting four feet away, perfectly composed — had let her say it.
+
+Twelve people were looking at her, expecting her to start.
+
+She started anyway.
+
+She walked them through the vulnerability, the fix, the two engineers who'd pulled an all-nighter verifying it, and she did not once look at the phone burning a hole in her blazer pocket, or at Marcus, because she wasn't sure yet what her face would do. When the CFO leaned forward and asked, pointed, whether there was "anything else the board should be aware of," her pulse did something unhelpful.
+
+She held his eyes anyway. "Everything I can confirm is in front of you." True, carefully. It bought her exactly the time she needed to find out if the email was right.
+
+By the time she finished, the room had gone from arms-crossed to nodding, and even Marcus — arms uncrossed, for once — said, "Good work."
+
+"Don't get used to it," she said, and filed away the way he wouldn't quite meet her eyes on the way out.
+
+She forwarded the email to security the second she hit the elevator, one line: *find out who this is, and whether it's true.* Then, because there was nothing else to do about it at 9:47 on a Tuesday, she put her phone away and went back to work.
+
+The day ran long, the way Tuesdays did now. It was nearly seven before she was back in her apartment, Charlie asleep against her feet, the question about Marcus still sitting unanswered in her inbox, when she remembered she hadn't heard from Wallace since a two-word text at noon: *made it.*
+
+She called before she could talk herself out of it.
+
+It rang once. Twice. She found herself oddly nervous, which was its own small, inconvenient piece of information.
+
+"Hey." A pause, and something in his voice caught — just slightly, like he hadn't expected it to do that. "Hi. I'm really glad you called."
+
+She hadn't braced for that. Not the softness in it, or the way something in her chest turned over, entirely without her permission, at the sound of a man being simply, uncomplicatedly happy to hear from her.`
   }
 ];
