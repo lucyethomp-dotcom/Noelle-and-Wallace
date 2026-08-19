@@ -166,7 +166,7 @@ His dad was waiting on the porch when he pulled in, sheepish and entirely too pl
   {
     number: 5,
     title: "Everything Material",
-    date: "August 17, 2026",
+    date: "August 18, 2026",
     content: `Noelle made it into the building at 8:58, coffee in one hand, blazer half-buttoned. Two minutes to spare. She'd take it.
 
 "Cutting it close," Marcus said, falling into step beside her.
@@ -212,7 +212,7 @@ She hadn't braced for that. Not the softness in it, or the way something in her 
   {
     number: 6,
     title: "The Line Clearing",
-    date: "August 17, 2026",
+    date: "August 19, 2026",
     content: `"So what's going on with you and this Noelle?" His dad was still waiting on the porch for an answer, arms crossed, entirely too pleased with himself.
 
 "I just met her two days ago," Wallace said, which was true and also managed to explain absolutely nothing. "But — we both like Julie's Ultimate."
