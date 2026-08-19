@@ -1,6 +1,6 @@
 'use client';
 
-import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle, ThumbsUp, Eye } from 'lucide-react';
+import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle, ThumbsUp, Eye, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { episodes } from '../stories/episodes';
 
@@ -19,6 +19,9 @@ export default function Home() {
   const [reactions, setReactions] = useState({});
   const [reactedKeys, setReactedKeys] = useState([]);
   const [viewCount, setViewCount] = useState(null);
+  const [readEpisodes, setReadEpisodes] = useState(new Set([1]));
+  const [showSubscribeNudge, setShowSubscribeNudge] = useState(false);
+  const [nudgeDismissed, setNudgeDismissed] = useState(false);
   const latestEpisode = episodes[episodes.length - 1];
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
@@ -37,6 +40,10 @@ export default function Home() {
       }
     }
 
+    if (window.localStorage.getItem('subscribeNudgeDismissed')) {
+      setNudgeDismissed(true);
+    }
+
     const alreadyCountedThisSession = window.sessionStorage.getItem('viewCounted');
     const viewRequest = alreadyCountedThisSession
       ? fetch('/api/views')
@@ -52,8 +59,28 @@ export default function Home() {
   }, []);
 
   const toggleEpisode = (episodeNumber) => {
-    setExpandedEpisode(expandedEpisode === episodeNumber ? null : episodeNumber);
+    const isOpening = expandedEpisode !== episodeNumber;
+    setExpandedEpisode(isOpening ? episodeNumber : null);
+
+    if (isOpening) {
+      setReadEpisodes((prev) => {
+        if (prev.has(episodeNumber)) return prev;
+        return new Set(prev).add(episodeNumber);
+      });
+    }
   };
+
+  const dismissSubscribeNudge = () => {
+    setShowSubscribeNudge(false);
+    setNudgeDismissed(true);
+    window.localStorage.setItem('subscribeNudgeDismissed', 'true');
+  };
+
+  useEffect(() => {
+    if (readEpisodes.size >= 2 && !nudgeDismissed) {
+      setShowSubscribeNudge(true);
+    }
+  }, [readEpisodes, nudgeDismissed]);
 
   const handleReaction = async (episodeNumber, type) => {
     const reactionKey = `${episodeNumber}-${type}`;
@@ -376,6 +403,66 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Subscribe Nudge - appears after a reader has opened 2 episodes */}
+      {showSubscribeNudge && (
+        <div className="fixed bottom-4 right-4 left-4 sm:left-auto sm:w-80 bg-white rounded-lg shadow-2xl border border-gray-200 p-4 z-30">
+          <button
+            onClick={dismissSubscribeNudge}
+            className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+            aria-label="Dismiss"
+          >
+            <X className="w-4 h-4" />
+          </button>
+          <div className="flex items-center mb-2">
+            <Bell className="w-5 h-5 mr-2 text-teal-600" />
+            <h4 className="font-semibold text-gray-800">Hooked already?</h4>
+          </div>
+          <p className="text-sm text-gray-600 mb-3">
+            You've read {readEpisodes.size} episodes so far. Want the next one delivered straight to your inbox?
+          </p>
+          <form
+            action="https://buttondown.com/api/emails/embed-subscribe/lucyethomp"
+            method="post"
+            target="popupwindow"
+            onSubmit={() => {
+              window.open(
+                'https://buttondown.com/api/emails/embed-subscribe/lucyethomp',
+                'popupwindow',
+                'scrollbars=yes,width=800,height=600'
+              );
+              dismissSubscribeNudge();
+            }}
+            className="embeddable-buttondown-form flex flex-col gap-2"
+          >
+            <label htmlFor="bd-email-nudge" className="sr-only">
+              Enter your email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="bd-email-nudge"
+              required
+              placeholder="you@example.com"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+            <div className="flex gap-2">
+              <input
+                type="submit"
+                value="Subscribe"
+                className="flex-1 py-2 text-sm font-medium text-white bg-teal-600 rounded-md hover:bg-teal-700 transition cursor-pointer"
+              />
+              <button
+                type="button"
+                onClick={dismissSubscribeNudge}
+                className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 transition"
+              >
+                No thanks
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 }
