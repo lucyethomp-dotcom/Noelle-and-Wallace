@@ -22,6 +22,7 @@ export default function Home() {
   const [readEpisodes, setReadEpisodes] = useState(new Set([1]));
   const [showSubscribeNudge, setShowSubscribeNudge] = useState(false);
   const [nudgeDismissed, setNudgeDismissed] = useState(false);
+  const [emailUnlocked, setEmailUnlocked] = useState(false);
   const latestEpisode = episodes[episodes.length - 1];
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
@@ -44,6 +45,10 @@ export default function Home() {
       setNudgeDismissed(true);
     }
 
+    if (window.localStorage.getItem('emailUnlocked')) {
+      setEmailUnlocked(true);
+    }
+
     const alreadyCountedThisSession = window.sessionStorage.getItem('viewCounted');
     const viewRequest = alreadyCountedThisSession
       ? fetch('/api/views')
@@ -58,15 +63,26 @@ export default function Home() {
       .catch((err) => console.error('Failed to load view count', err));
   }, []);
 
+  const isEpisodeLocked = (episodeNumber) =>
+    !emailUnlocked && !readEpisodes.has(episodeNumber) && readEpisodes.size >= 3;
+
   const toggleEpisode = (episodeNumber) => {
     const isOpening = expandedEpisode !== episodeNumber;
     setExpandedEpisode(isOpening ? episodeNumber : null);
 
-    if (isOpening) {
+    if (isOpening && !isEpisodeLocked(episodeNumber)) {
       setReadEpisodes((prev) => {
         if (prev.has(episodeNumber)) return prev;
         return new Set(prev).add(episodeNumber);
       });
+    }
+  };
+
+  const unlockAccess = (episodeNumber) => {
+    setEmailUnlocked(true);
+    window.localStorage.setItem('emailUnlocked', 'true');
+    if (episodeNumber) {
+      setReadEpisodes((prev) => new Set(prev).add(episodeNumber));
     }
   };
 
@@ -212,40 +228,93 @@ export default function Home() {
                   expandedEpisode === episode.number ? '' : 'hidden'
                 }`}
               >
-                {episode.content.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="mb-4 text-gray-700 leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
+                {isEpisodeLocked(episode.number) ? (
+                  <div className="text-center py-4">
+                    <Bell className="w-8 h-8 mx-auto mb-3 text-teal-600" />
+                    <h4 className="font-semibold text-gray-800 mb-1">You've read 3 episodes — nice.</h4>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Enter your email to unlock this episode and keep reading.
+                    </p>
+                    <form
+                      action="https://buttondown.com/api/emails/embed-subscribe/lucyethomp"
+                      method="post"
+                      target="popupwindow"
+                      onSubmit={() => {
+                        window.open(
+                          'https://buttondown.com/api/emails/embed-subscribe/lucyethomp',
+                          'popupwindow',
+                          'scrollbars=yes,width=800,height=600'
+                        );
+                        unlockAccess(episode.number);
+                      }}
+                      className="embeddable-buttondown-form flex flex-col gap-2 max-w-sm mx-auto"
+                    >
+                      <label htmlFor={`bd-email-gate-${episode.number}`} className="sr-only">
+                        Enter your email
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        id={`bd-email-gate-${episode.number}`}
+                        required
+                        placeholder="you@example.com"
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                      <input
+                        type="submit"
+                        value="Unlock & Keep Reading"
+                        className="w-full py-2 text-sm font-medium text-white bg-teal-600 rounded-md hover:bg-teal-700 transition cursor-pointer"
+                      />
+                      <p className="text-xs text-gray-400 text-center mt-1">
+                        <a
+                          href="https://buttondown.com/refer/lucyethomp"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="hover:underline"
+                        >
+                          Powered by Buttondown.
+                        </a>
+                      </p>
+                    </form>
+                  </div>
+                ) : (
+                  <>
+                    {episode.content.split('\n\n').map((paragraph, index) => (
+                      <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
 
-                <div className="flex flex-wrap items-center gap-3 pt-4 mt-2 border-t border-gray-200">
-                  {REACTION_TYPES.map(({ key, label, icon }) => {
-                    const hasReacted = reactedKeys.includes(`${episode.number}-${key}`);
-                    return (
-                      <button
-                        key={key}
-                        onClick={() => handleReaction(episode.number, key)}
-                        disabled={hasReacted}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition text-sm ${
-                          hasReacted
-                            ? 'bg-teal-50 border-teal-300 text-teal-700 cursor-not-allowed'
-                            : 'bg-white border-gray-200 text-gray-700 hover:border-teal-300 hover:bg-teal-50'
-                        }`}
-                        aria-label={label}
-                        aria-pressed={hasReacted}
-                      >
-                        {icon === 'thumbsup' ? (
-                          <ThumbsUp className={`w-4 h-4 ${hasReacted ? 'text-teal-700' : 'text-teal-600'}`} />
-                        ) : (
-                          <span className="text-base leading-none">{icon}</span>
-                        )}
-                        <span className={hasReacted ? 'text-teal-700' : 'text-gray-500'}>
-                          {reactions[episode.number]?.[key] || 0}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
+                    <div className="flex flex-wrap items-center gap-3 pt-4 mt-2 border-t border-gray-200">
+                      {REACTION_TYPES.map(({ key, label, icon }) => {
+                        const hasReacted = reactedKeys.includes(`${episode.number}-${key}`);
+                        return (
+                          <button
+                            key={key}
+                            onClick={() => handleReaction(episode.number, key)}
+                            disabled={hasReacted}
+                            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition text-sm ${
+                              hasReacted
+                                ? 'bg-teal-50 border-teal-300 text-teal-700 cursor-not-allowed'
+                                : 'bg-white border-gray-200 text-gray-700 hover:border-teal-300 hover:bg-teal-50'
+                            }`}
+                            aria-label={label}
+                            aria-pressed={hasReacted}
+                          >
+                            {icon === 'thumbsup' ? (
+                              <ThumbsUp className={`w-4 h-4 ${hasReacted ? 'text-teal-700' : 'text-teal-600'}`} />
+                            ) : (
+                              <span className="text-base leading-none">{icon}</span>
+                            )}
+                            <span className={hasReacted ? 'text-teal-700' : 'text-gray-500'}>
+                              {reactions[episode.number]?.[key] || 0}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}
@@ -280,13 +349,14 @@ export default function Home() {
                       action="https://buttondown.com/api/emails/embed-subscribe/lucyethomp"
                       method="post"
                       target="popupwindow"
-                      onSubmit={() =>
+                      onSubmit={() => {
                         window.open(
                           'https://buttondown.com/api/emails/embed-subscribe/lucyethomp',
                           'popupwindow',
                           'scrollbars=yes,width=800,height=600'
-                        )
-                      }
+                        );
+                        unlockAccess();
+                      }}
                       className="embeddable-buttondown-form flex flex-col gap-2"
                     >
                       <label htmlFor="bd-email" className="sr-only">
@@ -431,6 +501,7 @@ export default function Home() {
                 'popupwindow',
                 'scrollbars=yes,width=800,height=600'
               );
+              unlockAccess();
               dismissSubscribeNudge();
             }}
             className="embeddable-buttondown-form flex flex-col gap-2"
