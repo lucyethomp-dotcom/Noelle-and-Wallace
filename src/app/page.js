@@ -364,7 +364,7 @@ export default function Home() {
             <p className="text-gray-600">
               Follow the evolving relationship between Noelle Thompson, a brilliant tech executive,
               and Wallace Brown, a quantum physicist, as their paths cross in foggy San Francisco.
-              New episodes published every day at 7 AM PST.
+              New episodes published daily.
             </p>
             {viewCount !== null && (
               <p className="mt-4 flex items-center text-xs text-gray-400">
