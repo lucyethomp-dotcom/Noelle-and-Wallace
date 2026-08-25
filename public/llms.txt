@@ -1,6 +1,6 @@
 # The Story of Noelle & Wallace
 
-> A free daily serial romance set in San Francisco. Follow Noelle Thompson, a tech executive, and Wallace Brown, a quantum physicist, as their lives intertwine. New episodes are published every day at 7 AM PST at https://mywebsoap.com.
+> A free daily serial romance set in San Francisco. Follow Noelle Thompson, a tech executive, and Wallace Brown, a quantum physicist, as their lives intertwine. New episodes are published daily at https://mywebsoap.com.
 
 This site (MyWebSoap.com) hosts an ongoing work of original fiction. All episodes are listed on the homepage in chronological order, with full text included in the page HTML.
 
