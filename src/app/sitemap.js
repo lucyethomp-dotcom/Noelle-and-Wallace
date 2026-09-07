@@ -10,7 +10,7 @@ export default function sitemap() {
     {
       url: 'https://mywebsoap.com',
       lastModified: latestDate,
-      changeFrequency: 'daily',
+      changeFrequency: 'weekly',
       priority: 1,
     },
   ]

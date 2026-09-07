@@ -162,7 +162,7 @@ export default function Home() {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'The Story of Noelle & Wallace',
-    description: 'A San Francisco Romance, Delivered Daily',
+    description: 'A San Francisco Romance, Delivered Every Monday',
     url: 'https://mywebsoap.com',
     inLanguage: 'en-US',
     blogPost: episodes.map((episode) => ({
@@ -186,7 +186,7 @@ export default function Home() {
       <div className="bg-gradient-to-r from-rose-100 to-teal-100 p-6">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">The Story of Noelle & Wallace</h1>
-          <p className="text-lg text-gray-600">A San Francisco Romance, Delivered Daily</p>
+          <p className="text-lg text-gray-600">A San Francisco Romance, Delivered Every Monday</p>
         </div>
       </div>
 
@@ -322,8 +322,8 @@ export default function Home() {
 
         {/* Next Episode Teaser */}
         <div className="mt-8 bg-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">Coming Tomorrow</h3>
-          <p className="text-gray-600">A chance meeting, an easy laugh — but is there more to Wallace than Noelle realizes? Find out in tomorrow's episode...</p>
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">Coming Monday</h3>
+          <p className="text-gray-600">A chance meeting, an easy laugh — but is there more to Wallace than Noelle realizes? Find out in Monday's episode...</p>
           
           <div className="mt-6 flex items-center justify-between">
             <div className="relative">
@@ -332,7 +332,7 @@ export default function Home() {
                 className="flex items-center text-teal-600 hover:text-teal-700"
               >
                 <Bell className="w-5 h-5 mr-2" />
-                Get Daily Updates
+                Get Weekly Updates
               </button>
 
               {subscribeOpen && (
@@ -434,7 +434,7 @@ export default function Home() {
             <p className="text-gray-600">
               Follow the evolving relationship between Noelle Thompson, a brilliant tech executive,
               and Wallace Brown, a quantum physicist, as their paths cross in foggy San Francisco.
-              New episodes published daily.
+              New episodes published every Monday.
             </p>
             {viewCount !== null && (
               <p className="mt-4 flex items-center text-xs text-gray-400">

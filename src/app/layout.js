@@ -4,9 +4,9 @@ import './globals.css'
 const GA_MEASUREMENT_ID = 'G-YKWSE4HS32'
 
 const title = 'The Story of Noelle & Wallace'
-const description = 'A San Francisco Romance, Delivered Daily'
+const description = 'A San Francisco Romance, Delivered Every Monday'
 const longDescription =
-  'Follow the evolving relationship between Noelle Thompson, a brilliant tech executive, and Wallace Brown, a quantum physicist, as their paths cross in foggy San Francisco. A free daily serial romance, new episodes published daily.'
+  'Follow the evolving relationship between Noelle Thompson, a brilliant tech executive, and Wallace Brown, a quantum physicist, as their paths cross in foggy San Francisco. A free weekly serial romance, new episodes published every Monday.'
 
 export const metadata = {
   metadataBase: new URL('https://mywebsoap.com'),
@@ -14,7 +14,7 @@ export const metadata = {
   description: longDescription,
   keywords: [
     'serial fiction',
-    'daily romance story',
+    'weekly romance story',
     'web novel',
     'San Francisco romance',
     'free online fiction',
