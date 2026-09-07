@@ -1,6 +1,6 @@
 'use client';
 
-import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle, ThumbsUp, Eye, X } from 'lucide-react';
+import { Bell, Calendar, Share2, ChevronDown, Link2, MessageCircle, ThumbsUp, Eye, X, MessageSquare } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { episodes } from '../stories/episodes';
 
@@ -23,6 +23,11 @@ export default function Home() {
   const [showSubscribeNudge, setShowSubscribeNudge] = useState(false);
   const [nudgeDismissed, setNudgeDismissed] = useState(false);
   const [emailUnlocked, setEmailUnlocked] = useState(false);
+  const [feedbackComments, setFeedbackComments] = useState([]);
+  const [feedbackName, setFeedbackName] = useState('');
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [feedbackSubmitting, setFeedbackSubmitting] = useState(false);
+  const [feedbackError, setFeedbackError] = useState('');
   const latestEpisode = episodes[episodes.length - 1];
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
@@ -61,7 +66,39 @@ export default function Home() {
         window.sessionStorage.setItem('viewCounted', 'true');
       })
       .catch((err) => console.error('Failed to load view count', err));
+
+    fetch('/api/feedback')
+      .then((res) => res.json())
+      .then((data) => setFeedbackComments(data.comments || []))
+      .catch((err) => console.error('Failed to load feedback', err));
   }, []);
+
+  const handleFeedbackSubmit = async (e) => {
+    e.preventDefault();
+    if (!feedbackMessage.trim() || feedbackSubmitting) return;
+
+    setFeedbackSubmitting(true);
+    setFeedbackError('');
+
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: feedbackName, message: feedbackMessage }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to submit feedback');
+
+      setFeedbackComments((prev) => [data.comment, ...prev]);
+      setFeedbackMessage('');
+      setFeedbackName('');
+    } catch (err) {
+      console.error('Failed to submit feedback', err);
+      setFeedbackError('Something went wrong — please try again.');
+    } finally {
+      setFeedbackSubmitting(false);
+    }
+  };
 
   const isEpisodeLocked = (episodeNumber) =>
     !emailUnlocked && !readEpisodes.has(episodeNumber) && readEpisodes.size >= 3;
@@ -470,6 +507,73 @@ export default function Home() {
                 <p className="text-sm text-gray-600 text-center">A quantum physicist whose groundbreaking research is changing the world</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Feedback Forum */}
+        <div className="mt-8 bg-white p-6 rounded-lg shadow-lg">
+          <div className="flex items-center mb-4">
+            <MessageSquare className="w-5 h-5 mr-2 text-teal-600" />
+            <h3 className="text-xl font-semibold text-gray-800">Feedback</h3>
+          </div>
+          <p className="text-sm text-gray-600 mb-4">
+            Thoughts on the story so far? Leave a comment below — the author reads every one.
+          </p>
+
+          <form onSubmit={handleFeedbackSubmit} className="mb-6">
+            <label htmlFor="feedback-name" className="sr-only">
+              Name (optional)
+            </label>
+            <input
+              type="text"
+              id="feedback-name"
+              value={feedbackName}
+              onChange={(e) => setFeedbackName(e.target.value)}
+              placeholder="Name (optional)"
+              maxLength={60}
+              className="w-full mb-2 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+            <label htmlFor="feedback-message" className="sr-only">
+              Your feedback
+            </label>
+            <textarea
+              id="feedback-message"
+              value={feedbackMessage}
+              onChange={(e) => setFeedbackMessage(e.target.value)}
+              placeholder="Share your thoughts..."
+              required
+              rows={3}
+              maxLength={1000}
+              className="w-full mb-2 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
+            />
+            {feedbackError && (
+              <p className="text-sm text-rose-600 mb-2">{feedbackError}</p>
+            )}
+            <button
+              type="submit"
+              disabled={feedbackSubmitting || !feedbackMessage.trim()}
+              className="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-md hover:bg-teal-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {feedbackSubmitting ? 'Posting...' : 'Post Comment'}
+            </button>
+          </form>
+
+          <div className="space-y-4">
+            {feedbackComments.length === 0 ? (
+              <p className="text-sm text-gray-400 italic">No comments yet — be the first to share your thoughts.</p>
+            ) : (
+              feedbackComments.map((comment) => (
+                <div key={comment.id} className="border-t border-gray-100 pt-4 first:border-t-0 first:pt-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-sm font-medium text-gray-800">{comment.name}</span>
+                    <span className="text-xs text-gray-400">
+                      {new Date(comment.createdAt).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 whitespace-pre-wrap">{comment.message}</p>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
