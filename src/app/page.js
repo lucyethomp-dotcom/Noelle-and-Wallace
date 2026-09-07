@@ -456,7 +456,7 @@ export default function Home() {
                   />
                 </div>
                 <h4 className="font-medium text-gray-800">Noelle Thompson</h4>
-                <p className="text-sm text-gray-600 text-center">A tech executive with a brilliant mind and a goldendoodle named Charlie</p>
+                <p className="text-sm text-gray-600 text-center">An immaculately put-together tech executive with a brilliant mind, unshakeable integrity, and a goldendoodle named Charlie</p>
               </div>
               <div className="flex flex-col items-center">
                 <div className="w-40 h-56 mb-3 rounded-lg overflow-hidden shadow-md border border-gray-200">

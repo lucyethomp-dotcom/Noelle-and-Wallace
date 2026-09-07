@@ -252,5 +252,49 @@ They talked longer than either of them probably meant to — about her meeting, 
 Two minutes after the call ended, still smiling at nothing, the problem simply clicked. Not the lattice. The pairs weren't losing sync because of anything around them — they were losing sync because of each other, drifting apart in relation to one another a fraction of a second early. Which meant the fix wasn't insulation. It was timing.
 
 He was writing before he'd fully finished the thought, three weeks of dead ends suddenly wide open. Later, he had no idea how he'd explain to anyone that the breakthrough came the exact second the call ended — like it had been waiting for Noelle to inspire him.`
+  },
+  {
+    number: 7,
+    title: "The Access Log",
+    date: "August 20, 2026",
+    content: `Noelle had been awake since five, and it showed nowhere on the outside — blazer pressed, not a hair out of place, because whatever else was falling apart today, her appearance never would be one of the things.
+
+"Walk me through it again," she said. "Slowly."
+
+Devon Ruiz, from security, pulled up the access logs on the shared screen like they'd personally offended him. "Someone with admin credentials logged into the pipeline three weeks before your patch. Two seventeen in the morning. Nobody logs in at two seventeen in the morning by accident."
+
+"Whose credentials?"
+
+"That's the problem. The session logs from that window are gone. Not corrupted — gone. Somebody who knew exactly what they were doing scrubbed them, which means this wasn't some contractor poking around where they shouldn't. This was someone who understood our systems better than most of my team."
+
+Across the table, Marcus hadn't said a word in four minutes, which for Marcus was its own kind of confession.
+
+"So we have no name," Noelle said.
+
+"Not yet." Devon's jaw tightened. "But scrubbed logs leave scars. Give me the day."
+
+Her phone buzzed against her thigh, and she almost ignored it out of sheer professional discipline, except the discipline lost.
+
+*dinner tonight? asking for purely selfish reasons, I've had a very long week and you're the best part of it*
+
+She was smiling before she could stop herself, which felt inappropriate given the word "scrubbed" was still hanging in the room like smoke.
+
+*rough week over here too. yes. surprise me*
+
+*Señor Sisig, 7pm. get ready for the best burrito of your life*
+
+*already my favorite instruction all week*
+
+She put the phone away, aware of Marcus watching her do it, and told herself the small, unreasonable lift in her chest had nothing to do with anything that mattered today.
+
+She almost made it to the elevator before Devon caught her, laptop still open in his arms like he'd run.
+
+"Noelle." Something in his voice put her back in the boardroom instantly. "I got a partial timestamp match on the wipe. It's not proof yet, but it's close enough that I wanted you to hear it from me before it hits anyone else's inbox."
+
+"Devon—"
+
+"The wipe happened from a workstation on this floor." He turned the screen toward her. "Registered to—"
+
+Someone called her name from behind, sharp and sudden, and Devon's screen went dark under his palm before she could read a single letter of it.`
   }
 ];
