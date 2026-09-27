@@ -256,7 +256,7 @@ He was writing before he'd fully finished the thought, three weeks of dead ends 
   {
     number: 7,
     title: "The Access Log",
-    date: "August 20, 2026",
+    date: "September 9, 2026",
     content: `Noelle had been awake since five, and it showed nowhere on the outside — blazer pressed, not a hair out of place, because whatever else was falling apart today, her appearance never would be one of the things.
 
 "Walk me through it again," she said. "Slowly."
@@ -300,7 +300,7 @@ Someone called her name from behind, sharp and sudden, and Devon's screen went d
   {
     number: 8,
     title: "Out Into the Fog",
-    date: "August 20, 2026",
+    date: "September 27, 2026",
     content: `Wallace had been standing outside Señor Sisig for six minutes, which he knew because he'd checked his phone four times — not for the time exactly, but because checking felt like doing something instead of just standing there being nervous about a burrito order.
 
 She showed up at 6:59, exactly on time down to the minute, somehow looking like she hadn't spent all day in a building full of bad news, and something in his chest did the now-familiar, unhelpful thing.
