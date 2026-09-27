@@ -296,5 +296,53 @@ She almost made it to the elevator before Devon caught her, laptop still open in
 "The wipe happened from a workstation on this floor." He turned the screen toward her. "Registered to—"
 
 Someone called her name from behind, sharp and sudden, and Devon's screen went dark under his palm before she could read a single letter of it.`
+  },
+  {
+    number: 8,
+    title: "Out Into the Fog",
+    date: "August 20, 2026",
+    content: `Wallace had been standing outside Señor Sisig for six minutes, which he knew because he'd checked his phone four times — not for the time exactly, but because checking felt like doing something instead of just standing there being nervous about a burrito order.
+
+She showed up at 6:59, exactly on time down to the minute, somehow looking like she hadn't spent all day in a building full of bad news, and something in his chest did the now-familiar, unhelpful thing.
+
+"You look like you had a day," he said, by way of hello.
+
+"I had a week disguised as a day." She managed a real smile anyway. "Feed me something ridiculous."
+
+They both ordered the same thing without either of them suggesting it first — the spicy burrito, fries stuffed inside, no substitutions — and for a while it was easy, the way it always seemed to be with her, like they'd been doing this for years instead of weeks.
+
+It was somewhere between the burritos and the check that the easy version of her started to crack.
+
+"Can I tell you something without you trying to fix it?" she said, not quite meeting his eyes, which from her was its own kind of confession. "I can't actually get into details — it's still being looked into, and it's not really mine to talk about — but something's happening at work. Something serious. And it might involve someone I've trusted for a long time, and I don't know yet, and not knowing is somehow worse than knowing would be."
+
+"I make no promises on the fixing front. I'm told I turn everything into a problem set." He waited. "You don't have to tell me anything you're not supposed to. I just don't love watching you carry something alone."
+
+"I'm good at carrying things alone."
+
+"I've noticed. It's not actually a compliment when I say it like that."
+
+That got a real laugh out of her, small but real. "I keep thinking if I were smarter, or faster, I'd have caught it before anyone else did." Her voice had gone thin in a way he hadn't heard from her before. "I'm supposed to be the one who sees things coming."
+
+He didn't try to fix it, mostly because he genuinely couldn't with the little she'd given him, and he suspected fixing wasn't actually the assignment. "You caught it. Late doesn't mean you didn't catch it. It means whoever did this was better at hiding than you were at looking, which is a different problem, and a much smaller insult to you than the one you're currently running with."
+
+"That's disturbingly logical."
+
+"I turn everything into a problem set. I told you."
+
+She laughed again, and something in her shoulders came down half an inch, and he thought, with the same startled clarity he'd had two weeks ago on the highway to Tahoe, that he would drive considerably further than a highway for the privilege of watching that happen.
+
+Her phone buzzed on the table, face up.
+
+*Devon: Confirmed the workstation. It's registered to Marcus.*
+
+Her whole face changed. She turned the phone over without a word, fast, like she could unsee it by hiding it, and reached for her coat.
+
+"Noelle?"
+
+"I have to go." She was already standing. "I'm sorry — I really am. It's work, and I can't tell you why, and I know how that sounds."
+
+"Noelle."
+
+"I'll call you." And then she was gone, out into the fog, leaving him standing at the table with two empty burrito wrappers and the distinct, unshakable feeling that whatever she'd just seen was very, very bad.`
   }
 ];
