@@ -510,6 +510,16 @@ export default function Home() {
           </div>
         </div>
 
+        {/* About the Authors */}
+        <div className="mt-8 bg-white p-6 rounded-lg shadow-lg">
+          <h3 className="text-xl font-semibold text-gray-800 mb-4">About the Authors</h3>
+          <p className="text-gray-600">
+            This is a passion project written by Lauren, a working mom who figured the world could use
+            something fun to read, and her daughter Lucy — with a little help from Claude. Lauren is just
+            as excited as you are to see how Noelle and Wallace's story unfolds!
+          </p>
+        </div>
+
         {/* Feedback Forum */}
         <div className="mt-8 bg-white p-6 rounded-lg shadow-lg">
           <div className="flex items-center mb-4">
