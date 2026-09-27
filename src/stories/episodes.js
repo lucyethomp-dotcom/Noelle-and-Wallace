@@ -307,7 +307,7 @@ She showed up at 6:59, exactly on time down to the minute, somehow looking like 
 
 "You look like you had a day," he said, by way of hello.
 
-"I had a week disguised as a day." She managed a real smile anyway. "Feed me something ridiculous."
+"I had a week disguised as a day." She managed a real smile anyway. "I'm starving, and I'm really glad to see you. Thank you for being here."
 
 They both ordered the same thing without either of them suggesting it first — the spicy burrito, fries stuffed inside, no substitutions — and for a while it was easy, the way it always seemed to be with her, like they'd been doing this for years instead of weeks.
 
